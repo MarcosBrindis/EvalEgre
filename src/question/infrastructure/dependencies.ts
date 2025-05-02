@@ -1,4 +1,4 @@
-import { CreateQuestion } from '../application/usecase/CreateQuestion.ts';
+import { CreateQuestion } from '../application/usecase/CreateQuestion';
 import { GetQuestionsBySurvey } from '../application/usecase/GetQuestionsBySurvey';
 import { UpdateQuestion } from '../application/usecase/UpdateQuestion';
 import { DeleteQuestion } from '../application/usecase/DeleteQuestion';

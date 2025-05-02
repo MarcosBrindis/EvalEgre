@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CreateQuestion } from '../../../application/usecase/CreateQuestion.ts';
+import { CreateQuestion } from '../../../application/usecase/CreateQuestion';
 
 export const createQuestionController = (createQuestion: CreateQuestion) => async (req: Request, res: Response): Promise<void> => {
   try {
