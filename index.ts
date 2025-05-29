@@ -6,6 +6,9 @@ import questionRoutes from './src/question/infrastructure/http/router/questionRo
 import responseRoutes from './src/response/infrastructure/http/router/responseRoutes';
 import projectRoutes  from './src/proyect/infrastructure/http/router/projectRoutes';
 import evidenceRoutes from './src/evidence/infrastructure/http/router/EvicenceRoutes';
+import criterionRoutes from './src/criterion/infrastructure/http/router/criterionRoutes';
+import evaluationRoutes from './src/evaluation/infrastructure/http/router/evaluationRoutes';
+import professionalProfileRoutes from './src/professionalPerfile/infrastructure/http/router/professionalProfileRoutes';
 
 dotenv.config();
 const app = express();
@@ -17,6 +20,9 @@ app.use('/questions', questionRoutes);
 app.use('/responses', responseRoutes);
 app.use('/projects', projectRoutes);
 app.use('/evidences', evidenceRoutes);
+app.use('/criteria', criterionRoutes);
+app.use('/evaluations', evaluationRoutes);
+app.use('/professional-profiles', professionalProfileRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
