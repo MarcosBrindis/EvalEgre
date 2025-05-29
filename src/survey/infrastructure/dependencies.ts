@@ -8,6 +8,11 @@ import { FindSurveyByIdRepositoryMySQL } from './database/mysql/GetSurveyReposit
 import { UpdateSurveyRepositoryMySQL } from './database/mysql/UpdateSurveyRepositoryMySQL';
 import { DeleteSurveyRepositoryMySQL } from './database/mysql/DeleteSurveyRepositoryMySQL';
 import { GetAllSurveysRepositoryMySQL } from './database/mysql/GetAllSurveyRepositoryMySQL';
+import { NotificationServiceImpl } from './service/NotificationServiceImpl';
+
+// Servicio de notificaciones
+const notificationService = new NotificationServiceImpl();
+notificationService.initialize();
 
 // Repositorios
 const createSurveyRepo = new CreateSurveyRepositoryMySQL();
@@ -23,4 +28,4 @@ const updateSurvey = new UpdateSurvey(updateSurveyRepo);
 const deleteSurvey = new DeleteSurvey(deleteSurveyRepo);
 const getAllSurveys = new GetAllSurveys(getAllSurveysRepo);
 
-export const dependencies = {createSurvey,getSurveyById,updateSurvey,deleteSurvey,getAllSurveys,};
+export const dependencies = {createSurvey,getSurveyById,updateSurvey,deleteSurvey,getAllSurveys,notificationService,};
