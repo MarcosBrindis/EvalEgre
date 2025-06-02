@@ -3,6 +3,8 @@ import { GetUser } from '../application/usecase/GetUser';
 import { UpdateUser } from '../application/usecase/UpdateUser';
 import { DeleteUser } from '../application/usecase/DeleteUser';
 import { LoginUser } from '../application/usecase/LoguinUser';
+import { GetAllUsers } from '../application/usecase/GetAllUsers'; 
+
 import { CreateUserRepositoryMySQL } from '../infrastructure/database/mysql/CreateUserRepositoryMySQL';
 import { GetUserRepositoryMySQL } from '../infrastructure/database/mysql/GetUserRepositoryMySQL';
 import { UpdateUserRepositoryMySQL } from '../infrastructure/database/mysql/UpdateUserRepositoryMySQL';
@@ -26,5 +28,6 @@ const getUser    = new GetUser(getRepo);
 const updateUser = new UpdateUser(updateRepo);
 const deleteUser = new DeleteUser(deleteRepo);
 const loginUser = new LoginUser(getRepo, authService);
+const getAllUsers = new GetAllUsers(getRepo); 
 
-export const dependencies = { createUser, getUser, updateUser, deleteUser, loginUser };
+export const dependencies = { createUser, getUser, updateUser, deleteUser, loginUser, getAllUsers };

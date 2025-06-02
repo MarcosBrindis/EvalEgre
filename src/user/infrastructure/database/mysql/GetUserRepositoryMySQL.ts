@@ -26,4 +26,9 @@ export class GetUserRepositoryMySQL extends BaseUserRepository {
     );
     return rows.length ? rows[0] : null;
   }
+  
+  async findAll(): Promise<User[]> {
+    const [rows]: any = await MySQLConnection.execute('SELECT * FROM Usuarios');
+    return rows as User[];
+  }
 }

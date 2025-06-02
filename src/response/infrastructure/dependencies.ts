@@ -9,6 +9,8 @@ import { GetResponsesByQuestionRepositoryMySQL } from './database/mysql/GetRespo
 import { UpdateResponseRepositoryMySQL } from './database/mysql/UpdateResponseRepositoryMySQL';
 import { DeleteResponseRepositoryMySQL } from './database/mysql/DeleteResponseRepositoryMySQL';
 import { QuestionServiceImpl } from './service/QuestionServiceImpl';
+import { FindInvitationByCode } from '../../anonymousInvitacion/application/usecase/FindInvitationByCode';
+import { FindAnonymousInvitationByCodeRepositoryMySQL } from '../../anonymousInvitacion/infrastructure/database/mysql/FindAnonymousInvitationByCodeRepositoryMySQL';
 
 // Service
 const questionService = new QuestionServiceImpl();
@@ -19,12 +21,14 @@ const getResponseRepo = new GetResponseRepositoryMySQL();
 const getResponsesByQuestionRepo = new GetResponsesByQuestionRepositoryMySQL();
 const updateResponseRepo = new UpdateResponseRepositoryMySQL();
 const deleteResponseRepo = new DeleteResponseRepositoryMySQL();
+const findAnonymousInvitationByCodeRepo = new FindAnonymousInvitationByCodeRepositoryMySQL();
 
 // Casos de uso
-const createResponse = new CreateResponse(createResponseRepo,getResponseRepo,questionService);
+const createResponse = new CreateResponse(createResponseRepo, getResponseRepo, questionService);
 const getResponsesBySurvey = new GetResponsesBySurvey(getResponseRepo);
 const getResponsesByQuestion = new GetResponsesByQuestion(getResponsesByQuestionRepo);
-const updateResponse = new UpdateResponse(updateResponseRepo,getResponseRepo,questionService);
+const updateResponse = new UpdateResponse(updateResponseRepo, getResponseRepo, questionService);
 const deleteResponse = new DeleteResponse(deleteResponseRepo, getResponseRepo);
+const findInvitationByCode = new FindInvitationByCode(findAnonymousInvitationByCodeRepo);
 
-export const dependencies = {createResponse,getResponsesBySurvey,getResponsesByQuestion,updateResponse,deleteResponse,};
+export const dependencies = {createResponse,getResponsesBySurvey,getResponsesByQuestion,updateResponse,deleteResponse,findInvitationByCode};

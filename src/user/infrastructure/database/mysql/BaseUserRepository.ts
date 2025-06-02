@@ -21,4 +21,7 @@ export abstract class BaseUserRepository implements UserRepository {
   delete(_id: number): Promise<void> {
     return Promise.reject(new Error('Method delete not implemented'));
   }
+  findAll(): Promise<User[]> {
+    return Promise.reject(new Error('Method findAll not implemented'));
+  }
 }

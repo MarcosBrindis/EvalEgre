@@ -6,6 +6,7 @@ import { getResponsesByQuestionController } from '../controller/GetResponsesByQu
 import { updateResponseController } from '../controller/UpdateResponseController';
 import { deleteResponseController } from '../controller/DeleteResponseController';
 import { AuthMiddleware } from '../../../../core/middleware/jwtAuthMiddleware';
+import { makeAnonymousInvitationMiddleware } from '../../../../core/middleware/AnonymousInvitationMiddleware';
 
 const router = Router();
 
@@ -15,6 +16,7 @@ const getResponsesBySurvey = getResponsesBySurveyController(dependencies.getResp
 const getResponsesByQuestion = getResponsesByQuestionController(dependencies.getResponsesByQuestion);
 const updateResponse = updateResponseController(dependencies.updateResponse);
 const deleteResponse = deleteResponseController(dependencies.deleteResponse);
+const anonymousInvitationMiddleware = makeAnonymousInvitationMiddleware(dependencies.findInvitationByCode);
 
 // Rutas
 router.post('/', AuthMiddleware.verifyToken, createResponse);
@@ -23,4 +25,5 @@ router.get('/question/:questionId', AuthMiddleware.verifyToken, getResponsesByQu
 router.put('/survey/:id', AuthMiddleware.verifyToken, updateResponse); 
 router.delete('/:id', AuthMiddleware.verifyToken, deleteResponse); 
 
+router.post('/anonymous', anonymousInvitationMiddleware, createResponse);
 export default router;

@@ -18,10 +18,10 @@ const deleteEvaluation = deleteEvaluationController(dependencies.deleteEvaluatio
 const getAllEvaluations = getAllEvaluationsController(dependencies.getAllEvaluations);
 
 // Rutas
-router.post('/', AuthMiddleware.verifyToken, AuthorizationService.verifyRole(['Administrador', 'Evaluador']), createEvaluation);
+router.post('/', AuthMiddleware.verifyToken, AuthorizationService.verifyRole(['Administrador', 'Empleador']), createEvaluation);
 router.get('/:id', AuthMiddleware.verifyToken, getEvaluationById);
 router.get('/', AuthMiddleware.verifyToken, getAllEvaluations);
-router.put('/:id', AuthMiddleware.verifyToken, AuthorizationService.verifyRole(['Administrador', 'Evaluador']), updateEvaluation);
+router.put('/:id', AuthMiddleware.verifyToken, AuthorizationService.verifyRole(['Administrador', 'Empleador']), updateEvaluation);
 router.delete('/:id', AuthMiddleware.verifyToken, AuthorizationService.verifyRole(['Administrador']), deleteEvaluation);
 
 export default router;
