@@ -17,9 +17,11 @@ export const updateEvidenceController = (updateEvidence: UpdateEvidence) => asyn
       updateData.mime_type = req.file.mimetype;
     }
 
-    // Elimina campos vacíos
     Object.keys(updateData).forEach(key => {
-      if (updateData[key] === undefined || updateData[key] === null || updateData[key] === '') {
+      if (updateData[key] === undefined || updateData[key] === null) {
+        delete updateData[key];
+      }
+      if (key !== 'github_url' && updateData[key] === '') {
         delete updateData[key];
       }
     });
