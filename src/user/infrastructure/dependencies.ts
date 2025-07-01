@@ -25,9 +25,9 @@ const authService = new JwtAuthService();
 // Casos de uso
 const createUser = new CreateUser(createRepo, encryptionService);
 const getUser    = new GetUser(getRepo);
-const updateUser = new UpdateUser(updateRepo);
+const updateUser = new UpdateUser(updateRepo, encryptionService);
 const deleteUser = new DeleteUser(deleteRepo);
 const loginUser = new LoginUser(getRepo, authService);
 const getAllUsers = new GetAllUsers(getRepo); 
 
-export const dependencies = { createUser, getUser, updateUser, deleteUser, loginUser, getAllUsers };
+export const dependencies = { createUser, getUser, updateUser, deleteUser, loginUser, getAllUsers, };
