@@ -19,8 +19,8 @@ const getAllSurveys = getAllSurveysController(dependencies.getAllSurveys);
 
 // Rutas
 router.post('/', AuthMiddleware.verifyToken,AuthorizationService.verifyRole(['Administrador']),createSurvey);
-router.get('/:id',AuthMiddleware.verifyToken,getSurveyById);
-router.get('/',AuthMiddleware.verifyToken,getAllSurveys);
+router.get('/:id',getSurveyById);
+router.get('/',getAllSurveys);
 router.put('/:id',AuthMiddleware.verifyToken,AuthorizationService.verifyOwnershipOrRole(['Administrador']),updateSurvey);
 router.delete('/:id',AuthMiddleware.verifyToken, AuthorizationService.verifyOwnershipOrRole(['Administrador']),deleteSurvey);
 

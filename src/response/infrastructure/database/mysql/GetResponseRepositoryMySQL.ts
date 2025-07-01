@@ -82,23 +82,27 @@ export class GetResponseRepositoryMySQL extends BaseResponseRepository {
     };
   }
 
-  async findBySurveyAndUser(encuestaId: number, usuarioId: number): Promise<Response | null> {
-    const [rows]: any = await MySQLConnection.execute(
-      `SELECT * FROM Respuestas WHERE encuesta_id = ? AND usuario_id = ?`,
-      [encuestaId, usuarioId]
-    );
-  
-    if (rows.length === 0) {
-      return null;
-    }
-  
-    const row = rows[0];
-    return {
-      id: row.id,
-      encuesta_id: row.encuesta_id,
-      usuario_id: row.usuario_id,
-      creado_en: row.creado_en,
-      actualizado_en: row.actualizado_en,
-    };
+async findBySurveyAndUser(encuestaId: number, usuarioId?: number): Promise<Response | null> {
+  if (usuarioId === undefined || usuarioId === null) {
+    // Si no hay usuario, no buscar (caso anónimo)
+    return null;
   }
+  const [rows]: any = await MySQLConnection.execute(
+    `SELECT * FROM Respuestas WHERE encuesta_id = ? AND usuario_id = ?`,
+    [encuestaId, usuarioId]
+  );
+
+  if (rows.length === 0) {
+    return null;
+  }
+
+  const row = rows[0];
+  return {
+    id: row.id,
+    encuesta_id: row.encuesta_id,
+    usuario_id: row.usuario_id,
+    creado_en: row.creado_en,
+    actualizado_en: row.actualizado_en,
+  };
+}
 }

@@ -13,10 +13,15 @@ export class CreateResponse {
 
   async execute(response: Response, details: ResponseDetail[]): Promise<number> {
     // Verificar si el usuario ya respondió esta encuesta
-    const existingResponse = await this.getResponseRepository.findBySurveyAndUser(response.encuesta_id, response.usuario_id!);
+  if (response.usuario_id !== undefined && response.usuario_id !== null) {
+    const existingResponse = await this.getResponseRepository.findBySurveyAndUser(
+      response.encuesta_id,
+      response.usuario_id
+    );
     if (existingResponse) {
       throw new Error(`El usuario con ID ${response.usuario_id} ya respondió la encuesta con ID ${response.encuesta_id}.`);
     }
+  }
   
     // Obtener todas las preguntas de la encuesta
     const questions = await this.questionService.getQuestionsBySurveyId(response.encuesta_id);

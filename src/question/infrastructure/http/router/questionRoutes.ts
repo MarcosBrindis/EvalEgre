@@ -19,8 +19,8 @@ const deleteQuestion = deleteQuestionController(dependencies.deleteQuestion);
 
 // Rutas
 router.post('/', AuthMiddleware.verifyToken, AuthorizationService.verifyRole(['Administrador']), createQuestion); 
-router.get('/survey/:surveyId', AuthMiddleware.verifyToken, getQuestionsBySurvey); 
-router.get('/:id',AuthMiddleware.verifyToken, getQuestionById);
+router.get('/survey/:surveyId', getQuestionsBySurvey); 
+router.get('/:id', getQuestionById);
 router.put('/:questionId', AuthMiddleware.verifyToken, AuthorizationService.verifyOwnershipOrRole(['Administrador']), updateQuestion); 
 router.delete('/:questionId', AuthMiddleware.verifyToken, AuthorizationService.verifyOwnershipOrRole(['Administrador']), deleteQuestion); 
 
