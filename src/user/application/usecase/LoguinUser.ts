@@ -33,6 +33,7 @@ export class LoginUser {
       id: user.id,
       email: user.email,
       tipo: user.tipo,
+      profile_picture: user.profile_picture,
     };
 
     // Generar el token

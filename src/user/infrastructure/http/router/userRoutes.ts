@@ -23,7 +23,7 @@ const getAllUsers = getAllUsersController(dependencies.getAllUsers);
 router.post('/', createUser);
 router.get('/', AuthMiddleware.verifyToken, getAllUsers); 
 router.get('/:id', getUser);
-router.put('/:id',AuthMiddleware.verifyToken,AuthorizationService.verifyOwnership,updateUser);
+router.put('/:id',AuthMiddleware.verifyToken,updateUser);
 router.delete('/:id',AuthMiddleware.verifyToken,AuthorizationService.verifyOwnershipOrRole(['Administrador']),deleteUser);
 router.post('/login', loginUser);
 
