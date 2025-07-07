@@ -51,7 +51,7 @@ export const createAnonymousNotificationsController = (createAnonymousNotificati
         });
 
         // 3. Enviar correo con URL completa
-        const link = `${process.env.FRONT_URL || 'http://localhost:3000'}/encuesta/${encuesta_id}?code=${invitation.codigo}`;
+        const link = process.env.FRONT_URL || 'http://localhost:3000';
         await NotificationEmailService.sendEmail(
           anonEmail.email,
           'Invitación a Encuesta Anónima',

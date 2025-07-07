@@ -14,7 +14,7 @@ export class NotificationEmailService {
       });
 
       const result = await transporter.sendMail({
-        from: `"Sistema de Encuestas" <${process.env.EMAIL_USER}>`, // ✅ Usar el email real del .env
+        from: `"Sistema de Encuestas" <${process.env.EMAIL_USER}>`, 
         to,
         subject,
         text: emailBody,
@@ -23,7 +23,7 @@ export class NotificationEmailService {
       console.log('Email sent successfully to:', to, 'MessageId:', result.messageId);
     } catch (error) {
       console.error('Error sending email to:', to, error);
-      throw error; // Re-lanzar el error para manejarlo en el controlador
+      throw error; 
     }
   }
 }
