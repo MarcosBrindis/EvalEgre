@@ -44,13 +44,12 @@ export class CreateResponse {
   
       if (!question) {
         throw new Error(`Question with ID ${detail.pregunta_id} not found`);
-      }
-  
-      if (question.tipo === 'multiple' || question.tipo === 'likert') {
+      }      const tiposConOpciones: Array<string> = ['multiple', 'likert', 'checkbox'];
+      if (tiposConOpciones.includes(question.tipo)) {
         if (!question.opciones) {
           throw new Error(`Options are missing for question ID ${detail.pregunta_id}`);
         }
-  
+
         const validOption = question.opciones.some(
           (option: any) => option.valor === detail.valor_numero?.toString()
         );

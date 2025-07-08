@@ -37,7 +37,8 @@ export class UpdateResponse {
         throw new Error(`Pregunta ID ${detail.pregunta_id} no existe.`);
       }
 
-      if (question.tipo === 'multiple' || question.tipo === 'likert') {
+      const tiposConOpciones: Array<string> = ['multiple', 'likert', 'checkbox'];
+      if (tiposConOpciones.includes(question.tipo)) {
         if (!question.opciones) {
           throw new Error(`Faltan opciones para la pregunta ID ${detail.pregunta_id}`);
         }
