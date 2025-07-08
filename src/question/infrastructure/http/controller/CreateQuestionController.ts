@@ -7,6 +7,8 @@ export const createQuestionController = (createQuestion: CreateQuestion) => asyn
     res.status(201).json(question);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(400).json({ 
+      message: error instanceof Error ? error.message : 'Error al crear la pregunta' 
+    });
   }
 };

@@ -6,9 +6,16 @@ import { MySQLConnection } from '../../../../core/db/mysql/connection';
 export class UpdateQuestionRepositoryMySQL extends BaseQuestionRepository {
   async update(question: Question, options: OptionQuestion[] = []): Promise<void> {
     await MySQLConnection.execute(
-      `UPDATE Preguntas SET tipo = ?, texto = ?, orden = ?, competencia_asociada = ?
+      `UPDATE Preguntas SET tipo = ?, texto = ?, orden = ?, competencia_asociada = ?, campo_educacional_numero = ?
        WHERE id = ?`,
-      [question.tipo, question.texto, question.orden, question.competencia_asociada || null, question.id]
+      [
+        question.tipo, 
+        question.texto, 
+        question.orden, 
+        question.competencia_asociada || null, 
+        question.campo_educacional_numero ?? 0,
+        question.id
+      ]
     );
 
     // Eliminar opciones existentes

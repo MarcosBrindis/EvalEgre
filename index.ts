@@ -13,6 +13,7 @@ import professionalProfileRoutes from './src/professionalPerfile/infrastructure/
 import anonymousInvitationRoutes from './src/anonymousInvitacion/infrastructure/http/router/anonymousInvitationRoutes';
 import anonymousEmailRoutes from './src/anonymous-email/infrastructure/http/router/anonymousEmailRoutes';
 import notificationRoutes from './src/notification/infrastructure/http/router/notificationRoutes';
+import EducationalFieldRoutes from './src/EducationalField/infrastructure/http/router/EducationalFieldRoutes';
 
 dotenv.config();
 const app = express();
@@ -31,6 +32,7 @@ app.use('/professional-profiles', professionalProfileRoutes);
 app.use('/anonymous-invitations', anonymousInvitationRoutes);
 app.use('/anonymous-emails', anonymousEmailRoutes);
 app.use('/notifications', notificationRoutes);
+app.use('/educational-fields', EducationalFieldRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

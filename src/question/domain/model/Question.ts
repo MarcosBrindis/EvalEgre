@@ -6,5 +6,6 @@ export interface Question {
   texto: string;
   orden: number;
   competencia_asociada?: string;
+  campo_educacional_numero?: number; // 0-9, referencia a CamposEducacionales
   opciones?: OptionQuestion[];
 }

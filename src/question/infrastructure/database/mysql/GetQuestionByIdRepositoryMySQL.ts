@@ -27,6 +27,7 @@ export class GetQuestionByIdRepositoryMySQL extends BaseQuestionRepository {
       texto: question.texto,
       orden: question.orden,
       competencia_asociada: question.competencia_asociada,
+      campo_educacional_numero: question.campo_educacional_numero || undefined,
       opciones: options.map((o: any) => ({
         id: o.id,
         pregunta_id: o.pregunta_id,

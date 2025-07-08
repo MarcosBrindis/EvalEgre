@@ -45,6 +45,7 @@ export class GetQuestionsBySurveyRepositoryMySQL extends BaseQuestionRepository 
       texto: q.texto,
       orden: q.orden,
       competencia_asociada: q.competencia_asociada || undefined,
+      campo_educacional_numero: q.campo_educacional_numero || undefined,
       opciones: optionsByQuestionId[q.id] || [], 
     }));
   }

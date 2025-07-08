@@ -6,9 +6,16 @@ import { MySQLConnection } from '../../../../core/db/mysql/connection';
 export class CreateQuestionRepositoryMySQL extends BaseQuestionRepository {
   async save(question: Question, options: OptionQuestion[] = []): Promise<Question> {
     const [result]: any = await MySQLConnection.execute(
-      `INSERT INTO Preguntas (encuesta_id, tipo, texto, orden, competencia_asociada)
-       VALUES (?, ?, ?, ?, ?)`,
-      [question.encuesta_id, question.tipo, question.texto, question.orden, question.competencia_asociada || null]
+      `INSERT INTO Preguntas (encuesta_id, tipo, texto, orden, competencia_asociada, campo_educacional_numero)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        question.encuesta_id, 
+        question.tipo, 
+        question.texto, 
+        question.orden, 
+        question.competencia_asociada || null,
+        question.campo_educacional_numero ?? 0
+      ]
     );
 
     const questionId = result.insertId;

@@ -10,9 +10,11 @@ export const updateQuestionController = (updateQuestion: UpdateQuestion) => asyn
     }
 
     await updateQuestion.execute({ ...req.body.question, id: questionId }, req.body.options);
-    res.status(200).json({ message: 'Question updated successfully' });
+    res.status(200).json({ message: 'Pregunta actualizada exitosamente' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(400).json({ 
+      message: error instanceof Error ? error.message : 'Error al actualizar la pregunta' 
+    });
   }
 };
